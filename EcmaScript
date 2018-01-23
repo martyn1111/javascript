@@ -1,0 +1,14 @@
+European Computer Manufacturers Association (ECMA)
+(ECMA) 262 = ECMA Script
+
+ES6 en 2015
+const 
+let
+arrow function
+clases en vez de prototypes
+
+
+¿como usarlo en antiguo?
+BABEL >>>> Herramienta pasar EC6 y nos regresa codigo compatible
+para los navegadores viejos
+

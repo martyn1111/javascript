@@ -1,0 +1,32 @@
+callstack  es como javascript ejecuta las instrucciones 
+
+CALLSTACK/PILA  de LLAMADAS
+
+function saludar(n){
+    console.log(n)
+    }
+
+function init (){
+    saludar("martin")
+}
+
+init();
+
+Carga 
+|ejemplo.js
+|function saludar...
+|function init ......
+|ejecuta init (primer llamada que aparec ) 
+    jacascr
+PILA   
+|ejemplo.js
+|init
+|saludar("martin")
+|
+|
+
+console.log("EMPEZO")
+setTimeout(function() {
+    console.log("TERMINO TIMEOUT")
+}, 0);
+console.log("FINAL")
