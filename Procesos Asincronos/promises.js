@@ -1,20 +1,19 @@
-const promise = new Promise(function (resolve,reject) {
-    setTimeout(function () {
-        reject(new Error("Ha fallado la funcion promise"))
-    },3000)
+console.log("antes de usar fetch")
+fetch('https://swapi.co/api/people/1/')
+.then(res => res.json())
+.then((json) => {
+    luke = json
+    return fetch(json.homeworld)
 })
-
-promise.then(function (res) {
-    console.log("Succeed")    
+.then(res => res.json())
+.then ((json) =>{
+    luke.home = json
+    console.log("Usando Fetch")
+    console.log(`${luke.name} nació en ${luke.home.name}`)
 })
-.catch(function (error) {
-    _handleError(error)
-})
+.catch((err)=> _handleError(err) )
 
-function _handleError(err){
-    console.log(err)
-}
-
+////////// PROMESAS 
 function get(URL){
     return new Promise((resolve,reject) => {
         const xhr = new XMLHttpRequest();
@@ -38,6 +37,7 @@ function _handleError(err){
   console.log(err)
 }
 
+console.log("antes de llamar promesas encadenadas")
 let luke
 get('https://swapi.co/api/people/1/')
 .then((res)=>{
@@ -46,46 +46,27 @@ get('https://swapi.co/api/people/1/')
 })
 .then((home) => {
     luke.home = home
+    console.log("Encadenando Promesas")
     console.log(`${luke.name} nació en ${luke.home.name}`)
-    /**
-     * Igual que el callback hell 
-     * estoy repitiendo promesas dentro de promesas 
-     */
+    
 })
 .catch((err)=> _handleError(err) )
-
-
-fetch('https://swapi.co/api/people/1/')
-.then(res => res.json())
-.then((json) => {
-    luke = json
-    return fetch(luke.homeworld)
-})
-.then((home) => {
-    luke.home = home
-    console.log(`${luke.name} nació en ${luke.home.name}`)
-    /**
-     * Igual que el callback hell 
-     * estoy repitiendo promesas dentro de promesas 
-     */
-})
-.catch((err)=> _handleError(err) )
-
-
 
 //PRIMERA FORMA DE HACERLA PERO SE ENCADENAN LOS THEN COMO EL CALLBACK HELL
-// get('https://swapi.co/api/people/1/')
-// .then((luke)=>{
-//     get('https://swapi.co/api/planets/1/')
-//     .then((home) => {
-//         luke.home = home
-//             console.log(`${luke.name} nació en ${luke.home.name}`)
-//             /**
-//              * Igual que el callback hell 
-//              * estoy repitiendo promesas dentro de promesas 
-//              */
-//     })
-// })
-// .catch({
+console.log("antes de llamar promesas dentro de promesas")
+get('https://swapi.co/api/people/1/')
+.then((luke)=>{
+    get('https://swapi.co/api/planets/1/')
+    .then((home) => {
+        luke.home = home
+        console.log("Promesas dentro de otra promesa ")
+        console.log(`${luke.name} nació en ${luke.home.name}`)
+        /**
+         * Igual que el callback hell 
+         * estoy repitiendo promesas dentro de promesas 
+         */
+    })
+})
+.catch({
     
-// })
+})
