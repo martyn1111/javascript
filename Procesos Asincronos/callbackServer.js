@@ -26,7 +26,7 @@ get('https://swapi.co/api/people/1/', function onResponse(err,luke){
     get('https://swapi.co/api/planets/1/', function onResponse(err,home){
         if(err) return _handleError(err)
         luke.home = home
-            console.log(`${luke.name} nació en ${luke.home}`)
+            console.log(`${luke.name} nació en ${luke.home.name}`)
             /**
              * Callback tras callback se le llama callback hell
              */
